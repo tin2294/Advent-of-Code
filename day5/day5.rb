@@ -537,6 +537,53 @@ def get_points(array)
         end
         new_point -= 1
       end
+    elsif (coords[0][1].to_i - coords[1][1].to_i).abs == (coords[0][0].to_i - coords[1][0].to_i).abs
+      p 'hello'
+      if (coords[0][0].to_i > coords[1][0].to_i) && (coords[0][1].to_i > coords[1][1].to_i)
+        # (8,8) -> (0,0)
+        p "h"
+        diff = [coords[0][1].to_i, coords[1][1].to_i].max - [coords[0][1].to_i, coords[1][1].to_i].min
+        point1 = 1
+        point2 = diff - point1
+        while point1 < diff
+          coords << [(coords[1][0].to_i + point2).to_s, (coords[0][1].to_i - point1).to_s]
+          point1 += 1
+          point2 = diff - point1
+        end
+      elsif (coords[0][0].to_i > coords[1][0].to_i) && (coords[0][1].to_i < coords[1][1].to_i)
+        # (8,0) -> (0,8)
+        p "e"
+        diff = [coords[0][1].to_i, coords[1][1].to_i].max - [coords[0][1].to_i, coords[1][1].to_i].min
+        point1 = 1
+        point2 = diff - point1
+        while point1 < diff
+          coords << [(coords[1][0].to_i + point1).to_s, (coords[0][1].to_i + point2).to_s]
+          point1 += 1
+          point2 = diff - point1
+        end
+      elsif (coords[0][0].to_i < coords[1][0].to_i) && (coords[0][1].to_i > coords[1][1].to_i)
+        p "l"
+        # (5,5) (8,2)
+        diff = [coords[0][1].to_i, coords[1][1].to_i].max - [coords[0][1].to_i, coords[1][1].to_i].min
+        point1 = 1
+        point2 = diff - point1
+        while point1 < diff
+          coords << [(coords[0][0].to_i + point1).to_s, (coords[1][1].to_i + point2).to_s]
+          point1 += 1
+          point2 = diff - point1
+        end
+      elsif (coords[0][0].to_i < coords[1][0].to_i) && (coords[0][1].to_i < coords[1][1].to_i)
+        p "o"
+        # (0,0) (8,8)
+        diff = [coords[0][1].to_i, coords[1][1].to_i].max - [coords[0][1].to_i, coords[1][1].to_i].min
+        point1 = 1
+        point2 = diff - point1
+        while point1 < diff
+          coords << [(coords[0][0].to_i + point2).to_s, (coords[1][1].to_i - point1).to_s]
+          point1 += 1
+          point2 = diff - point1
+        end
+      end
     else
       deleted << coords
     end
