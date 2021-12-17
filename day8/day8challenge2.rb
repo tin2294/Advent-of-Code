@@ -35,6 +35,11 @@ end
 # small = "cdfbe"
 # p includes(big, small)
 
+def non_unique(array)
+  # eliminar del array original los que ya son unique
+  # los non_unique ponerlos aquí para los de 6 y 5 dígitos. De aquí se hace el check cogiendo lo del def anterior.
+end
+
 def get_numbers(array)
   hash_final = Hash.new(0)
   array.each do |digit|
